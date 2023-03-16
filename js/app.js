@@ -35,3 +35,5 @@ function operate(operator, a, b) {
 }
 
 console.log(operate('*', 5, 10));
+
+// https://mrbuddh4.github.io/calculator/
