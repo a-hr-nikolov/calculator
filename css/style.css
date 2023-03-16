@@ -61,6 +61,11 @@ body {
   font-size: 5rem;
 }
 
+.zero {
+  flex-grow: 1;
+  flex-basis: 65%;
+}
+
 .operators {
   display: flex;
   flex-wrap: wrap;
