@@ -94,6 +94,6 @@ body {
 
 @media (max-width: 640px) {
   body {
-    font-size: 3rem;
+    font-size: 10vmin;
   }
 }
