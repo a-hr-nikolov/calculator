@@ -1,5 +1,5 @@
 :root {
-  --scale: 1px;
+  --bg-color: rgb(233, 233, 233);
 }
 
 * {
@@ -11,17 +11,16 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: darkslategray;
+  background: var(--bg-color);
   height: 100svh;
   margin: 0;
   gap: 8px;
 }
 
-.calculator {
-  width: calc(var(--scale) * 600);
-  height: calc(var(--scale) * 800);
+.calc-container {
+  width: min(600px, 90%);
+  height: auto;
   background: white;
-  padding: calc(var(--scale) * 20);
   border-radius: 15px;
 }
 
