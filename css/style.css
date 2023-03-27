@@ -1,5 +1,7 @@
 :root {
   --bg-color: rgb(233, 233, 233);
+  --font-color: black;
+  --container-color: white;
 }
 
 * {
@@ -12,16 +14,18 @@ body {
   justify-content: center;
   align-items: center;
   background: var(--bg-color);
+  color: var(--font-color);
   height: 100svh;
   margin: 0;
-  gap: 8px;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .calc-container {
   width: min(600px, 90%);
-  height: auto;
-  background: white;
   border-radius: 15px;
+  padding: 20px;
+  background-color: var(--container-color);
+  box-shadow: 2px 2px 0 5px rgb(100, 100, 100);
 }
 
 #input-field {
