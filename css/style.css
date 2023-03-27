@@ -6,6 +6,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -24,7 +26,7 @@ body {
 .calc-container {
   width: min(600px, 90%);
   border-radius: 15px;
-  padding: 20px;
+  padding: 1.5rem;
   background-color: var(--container-color);
   box-shadow: 2px 2px 0 5px rgb(100, 100, 100);
 
@@ -40,11 +42,15 @@ body {
   text-align: right;
   background-color: lightgray;
   width: 100%;
-  padding: 0;
-  margin: 0 0 10px 0;
+  padding: 5px 2px;
+  margin: 0;
   border: none;
-  font-size: 5rem;
   box-shadow: inset 1px 1px 0px 3px rgb(114, 114, 114);
+  font-size: inherit;
+}
+
+#input-field:focus {
+  outline: none;
 }
 
 .number-pad {
@@ -95,5 +101,15 @@ body {
 @media (max-width: 640px) {
   body {
     font-size: 10vmin;
+  }
+
+  .number-pad,
+  .calc-container {
+    gap: 0.3em;
+  }
+
+  .calc-container {
+    padding: 0.5em;
+    border-radius: 0.5em;
   }
 }
