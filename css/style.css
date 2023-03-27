@@ -18,6 +18,7 @@ body {
   height: 100svh;
   margin: 0;
   font-family: 'Roboto Mono', monospace;
+  font-size: 5rem;
 }
 
 .calc-container {
@@ -28,15 +29,14 @@ body {
   box-shadow: 2px 2px 0 5px rgb(100, 100, 100);
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(6, 150px);
+  grid-template-columns: 3fr 1fr;
   gap: 15px;
 
   place-items: stretch;
 }
 
 #input-field {
-  grid-column: span 4;
+  grid-column: span 2;
   text-align: right;
   background-color: lightgray;
   width: 100%;
@@ -47,6 +47,12 @@ body {
   box-shadow: inset 1px 1px 0px 3px rgb(114, 114, 114);
 }
 
+.number-pad {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
 .number,
 .operator {
   display: flex;
@@ -54,6 +60,11 @@ body {
   align-items: center;
   box-shadow: 2px 2px 1px 0px rgb(114, 114, 114);
   user-select: none;
+  padding: 0.1em;
+}
+
+.zero {
+  grid-column: span 2;
 }
 
 .number:active,
@@ -64,12 +75,16 @@ body {
 
 .number {
   background-color: lightgray;
-  font-size: 5rem;
   text-align: center;
   vertical-align: center;
 }
 
 .operator {
   background-color: orange;
-  font-size: 5rem;
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 3rem;
+  }
 }
