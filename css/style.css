@@ -29,14 +29,14 @@ body {
   box-shadow: 2px 2px 0 5px rgb(100, 100, 100);
 
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
 
   place-items: stretch;
 }
 
 #input-field {
-  grid-column: span 2;
+  grid-column: span 4;
   text-align: right;
   background-color: lightgray;
   width: 100%;
@@ -48,6 +48,8 @@ body {
 }
 
 .number-pad {
+  grid-column: span 3;
+  grid-row: span 5;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
@@ -58,29 +60,36 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 1px 0px rgb(114, 114, 114);
+  box-shadow: 2px 2px 0px 2px rgb(114, 114, 114);
   user-select: none;
   padding: 0.1em;
-}
-
-.zero {
-  grid-column: span 2;
+  border-radius: 5px;
 }
 
 .number:active,
 .operator:active {
-  box-shadow: inset 2px 2px 1px 0px rgb(114, 114, 114);
+  box-shadow: inset 2px 2px 0px 2px rgb(114, 114, 114);
   translate: 3px;
 }
 
 .number {
   background-color: lightgray;
-  text-align: center;
-  vertical-align: center;
 }
 
 .operator {
   background-color: orange;
+}
+
+.clear {
+  grid-column: span 2;
+}
+
+.del {
+  grid-column: span 1;
+}
+
+.zero {
+  grid-column: span 2;
 }
 
 @media (max-width: 640px) {
