@@ -26,10 +26,17 @@ body {
   padding: 20px;
   background-color: var(--container-color);
   box-shadow: 2px 2px 0 5px rgb(100, 100, 100);
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 150px);
+  gap: 15px;
+
+  place-items: stretch;
 }
 
 #input-field {
-  display: block;
+  grid-column: span 4;
   text-align: right;
   background-color: lightgray;
   width: 100%;
@@ -37,53 +44,32 @@ body {
   margin: 0 0 10px 0;
   border: none;
   font-size: 5rem;
+  box-shadow: inset 1px 1px 0px 3px rgb(114, 114, 114);
 }
 
-.pad {
+.number,
+.operator {
   display: flex;
-  flex-grow: 1;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 1px 0px rgb(114, 114, 114);
+  user-select: none;
 }
 
-.numbers {
-  display: flex;
-  flex-wrap: wrap;
-  flex-basis: 75%;
-  align-items: stretch;
-  gap: 5px;
-  height: 500px;
+.number:active,
+.operator:active {
+  box-shadow: inset 2px 2px 1px 0px rgb(114, 114, 114);
+  translate: 3px;
 }
 
 .number {
-  flex: 1 0 30%;
-  min-width: 50px;
   background-color: lightgray;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 5rem;
-}
-
-.zero {
-  flex-grow: 1;
-  flex-basis: 65%;
-}
-
-.operators {
-  display: flex;
-  flex-wrap: wrap;
-  flex-basis: 25%;
-  align-items: stretch;
-  gap: 5px;
-  height: 500px;
+  text-align: center;
+  vertical-align: center;
 }
 
 .operator {
-  flex: 1 0 100%;
-  min-width: 50px;
   background-color: orange;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 5rem;
 }
