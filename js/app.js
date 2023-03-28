@@ -1,5 +1,17 @@
 import { add, subtract, multiply, divide } from './mathoperations.js';
 
+const buttons = document.querySelectorAll('button');
+const numbers = document.querySelectorAll('.number');
+const inputField = document.querySelector('#input-field');
+
+numbers.forEach(item => {
+  item.addEventListener('click', inputNumbers);
+});
+
+function inputNumbers(event) {
+  inputField.value += event.target.value;
+}
+
 function operate(operator, a, b) {
   switch (operator) {
     case '+':
@@ -18,7 +30,5 @@ function operate(operator, a, b) {
       return 'NOT AN OPERATION';
   }
 }
-
-console.log(operate('*', 5, 10));
 
 // https://mrbuddh4.github.io/calculator/
