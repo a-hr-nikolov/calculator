@@ -6,6 +6,7 @@ const displayText = document.querySelector('.display-text');
 const delButton = document.querySelector('.del');
 const clearButton = document.querySelector('.clear');
 const numberButtons = document.querySelectorAll('.number');
+const pointButton = document.querySelector('.point');
 const operatorButtons = document.querySelectorAll('.operator');
 
 // Variable declarations
@@ -19,6 +20,7 @@ let flagOverwrite = true;
 // Event Listeners
 delButton.addEventListener('click', deleteLastCharacter);
 clearButton.addEventListener('click', clearDisplay);
+pointButton.addEventListener('click', inputDecimal);
 
 numberButtons.forEach(item => {
   item.addEventListener('click', inputNumbers);
@@ -46,6 +48,12 @@ function inputNumbers(event) {
 
   // if (displayText.textContent === '0') displayText.textContent = '';
   displayText.textContent += event.target.value;
+}
+
+function inputDecimal() {
+  if (displayText.textContent.includes('.')) return;
+  if (flagOverwrite === true) flagOverwrite = false;
+  displayText.textContent += '.';
 }
 
 function clearDisplay() {
