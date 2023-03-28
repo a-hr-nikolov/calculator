@@ -64,20 +64,21 @@ body {
   gap: 15px;
 }
 
-.number,
-.operator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+button {
+  /* Reset */
+  margin: 0;
+  border: none;
+
+  padding: 0.1em;
   box-shadow: 2px 2px 0px 2px var(--shadow-color);
   user-select: none;
-  padding: 0.1em;
   border-radius: 5px;
   outline: 1px solid var(--shadow-color);
+
+  font-size: 5rem;
 }
 
-.number:active,
-.operator:active {
+button:active {
   box-shadow: inset 2px 2px 0px 1px var(--shadow-color);
   translate: 2px 2px;
 }
