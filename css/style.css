@@ -10,7 +10,7 @@
   --num-btn-color: rgb(225, 225, 225);
   --operator-btn-bg-color: orange;
   --clear-btn-bg-color: rgb(200, 0, 0);
-  --del-btn-bg-color: black;
+  --del-btn-bg-color: rgb(152, 152, 152);
 }
 
 * {
@@ -75,6 +75,11 @@ button {
   margin: 0;
   border: none;
 
+  /* Display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   /* Box Model Stuff */
   padding: 0.1em;
   border-radius: 5px;
@@ -82,7 +87,7 @@ button {
   box-shadow: 2px 2px 0px 2px var(--shadow-color);
 
   /* Typography */
-  font-size: 5rem;
+  font-size: inherit;
 
   /* Misc */
   user-select: none;
