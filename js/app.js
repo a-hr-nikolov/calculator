@@ -2,6 +2,11 @@ import { add, subtract, multiply, divide } from './mathoperations.js';
 
 const numbers = document.querySelectorAll('.number');
 const display = document.querySelector('.display');
+const delButton = document.querySelector('.del');
+const clearButton = document.querySelector('.clear');
+
+delButton.addEventListener('click', deleteLastCharacter);
+clearButton.addEventListener('click', clearDisplay);
 
 numbers.forEach(item => {
   item.addEventListener('click', inputNumbers);
@@ -10,6 +15,14 @@ numbers.forEach(item => {
 function inputNumbers(event) {
   if (display.textContent === '0') display.textContent = '';
   display.textContent += event.target.value;
+}
+
+function clearDisplay() {
+  display.textContent = '0';
+}
+
+function deleteLastCharacter() {
+  display.textContent = display.textContent.slice(0, -1);
 }
 
 function operate(operator, a, b) {
