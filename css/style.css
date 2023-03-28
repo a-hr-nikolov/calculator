@@ -70,11 +70,10 @@ button {
   border: none;
 
   padding: 0.1em;
-  box-shadow: 2px 2px 0px 2px var(--shadow-color);
-  user-select: none;
   border-radius: 5px;
   outline: 1px solid var(--shadow-color);
-
+  box-shadow: 2px 2px 0px 2px var(--shadow-color);
+  user-select: none;
   font-size: 5rem;
 }
 
@@ -105,6 +104,10 @@ button:active {
 
 @media (max-width: 640px) {
   body {
+    font-size: 10vmin;
+  }
+
+  button {
     font-size: 10vmin;
   }
 
