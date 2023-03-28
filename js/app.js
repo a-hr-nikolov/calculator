@@ -27,7 +27,7 @@ numberButtons.forEach(item => {
 });
 
 operatorButtons.forEach(item => {
-  item.addEventListener('click', inputNumbers);
+  item.addEventListener('click', prepareForOperation);
 });
 
 // functions
@@ -43,7 +43,7 @@ function inputNumbers(event) {
     displayText.textContent = '';
   }
 
-  if (displayWidth < characterWidth * (displayText.textContent.length + 1))
+  if (displayWidth < characterWidth * (displayText.textContent.length + 2))
     return;
 
   // if (displayText.textContent === '0') displayText.textContent = '';
@@ -59,11 +59,20 @@ function inputDecimal() {
 function clearDisplay() {
   displayText.textContent = '0';
   flagOverwrite = true;
+  operandA = null;
+  operandB = null;
 }
 
 function deleteLastCharacter() {
+  if (flagOverwrite === true) {
+    displayText.textContent = '0';
+    return;
+  }
   displayText.textContent = displayText.textContent.slice(0, -1);
-  if (displayText.textContent.length === 0) clearDisplay();
+  if (displayText.textContent.length === 0) {
+    displayText.textContent = '0';
+    flagOverwrite = true;
+  }
 }
 
 function operate(operator, a, b) {
@@ -81,11 +90,12 @@ function operate(operator, a, b) {
       return divide(a, b);
     // break;
     default:
-      return 'NOT AN OPERATION';
+      return a;
   }
 }
 
 function prepareForOperation(event) {
+  flagOverwrite = true;
   if (operandA === null) {
     operandA = parseFloat(displayText.textContent);
     operation = event.target.value;
@@ -94,7 +104,11 @@ function prepareForOperation(event) {
   operandB = parseFloat(displayText.textContent);
   operandA = operate(operation, operandA, operandB);
   displayText.textContent = `${operandA}`;
-  flagOverwrite = true;
+  operation = event.target.value;
+  if (operation === 'return') {
+    operandA = null;
+    operandB = null;
+  }
 }
 
 // https://mrbuddh4.github.io/calculator/
