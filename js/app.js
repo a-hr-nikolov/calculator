@@ -1,18 +1,34 @@
 import { add, subtract, multiply, divide } from './mathoperations.js';
 
-const numbers = document.querySelectorAll('.number');
+// Selectors
 const display = document.querySelector('.display');
 const displayText = document.querySelector('.display-text');
 const delButton = document.querySelector('.del');
 const clearButton = document.querySelector('.clear');
+const numberButtons = document.querySelectorAll('.number');
+const operatorButtons = document.querySelectorAll('.operator');
 
+// Variable declarations
+let operandA = null;
+let operandB = null;
+let operation = null;
+
+// Flag to overwrite input after operation is selected and on clear
+let flagOverwrite = true;
+
+// Event Listeners
 delButton.addEventListener('click', deleteLastCharacter);
 clearButton.addEventListener('click', clearDisplay);
 
-numbers.forEach(item => {
+numberButtons.forEach(item => {
   item.addEventListener('click', inputNumbers);
 });
 
+operatorButtons.forEach(item => {
+  item.addEventListener('click', inputNumbers);
+});
+
+// functions
 function inputNumbers(event) {
   const displayWidth =
     parseFloat(getComputedStyle(display).width) -
@@ -20,43 +36,57 @@ function inputNumbers(event) {
   const displayTextWidth = parseFloat(getComputedStyle(displayText).width);
   const characterWidth = displayTextWidth / displayText.textContent.length;
 
-  console.log(getComputedStyle(display).padding);
-  console.log(displayTextWidth);
-  console.log(characterWidth);
+  if (flagOverwrite === true) {
+    flagOverwrite = false;
+    displayText.textContent = '';
+  }
 
   if (displayWidth < characterWidth * (displayText.textContent.length + 1))
     return;
 
-  if (displayText.textContent === '0') displayText.textContent = '';
+  // if (displayText.textContent === '0') displayText.textContent = '';
   displayText.textContent += event.target.value;
 }
 
 function clearDisplay() {
   displayText.textContent = '0';
+  flagOverwrite = true;
 }
 
 function deleteLastCharacter() {
   displayText.textContent = displayText.textContent.slice(0, -1);
-  if (displayText.textContent === '') displayText.textContent = '0';
+  if (displayText.textContent.length === 0) clearDisplay();
 }
 
 function operate(operator, a, b) {
   switch (operator) {
-    case '+':
+    case 'add':
       return add(a, b);
     // break;
-    case '-':
+    case 'subtract':
       return subtract(a, b);
     // break;
-    case '*':
+    case 'multiply':
       return multiply(a, b);
     // break;
-    case '/':
+    case 'divide':
       return divide(a, b);
     // break;
     default:
       return 'NOT AN OPERATION';
   }
+}
+
+function prepareForOperation(event) {
+  if (operandA === null) {
+    operandA = parseFloat(displayText.textContent);
+    operation = event.target.value;
+    return;
+  }
+  operandB = parseFloat(displayText.textContent);
+  operandA = operate(operation, operandA, operandB);
+  displayText.textContent = `${operandA}`;
+  flagOverwrite = true;
 }
 
 // https://mrbuddh4.github.io/calculator/
