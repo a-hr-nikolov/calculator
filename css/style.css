@@ -1,10 +1,16 @@
 :root {
   --bg-color: rgb(233, 233, 233);
-  --font-color: black;
+
+  --font-color-main: black;
+  --font-color-inverted: white;
+
   --container-color: rgb(202, 202, 202);
   --shadow-color: darkslategray;
+
   --num-btn-color: rgb(225, 225, 225);
-  --operator-btn-color: orange;
+  --operator-btn-bg-color: orange;
+  --clear-btn-bg-color: rgb(200, 0, 0);
+  --del-btn-bg-color: black;
 }
 
 * {
@@ -19,7 +25,7 @@ body {
   justify-content: center;
   align-items: center;
   background: var(--bg-color);
-  color: var(--font-color);
+  color: var(--font-color-main);
   height: 100svh;
   margin: 0;
   font-family: 'Roboto Mono', monospace;
@@ -69,12 +75,17 @@ button {
   margin: 0;
   border: none;
 
+  /* Box Model Stuff */
   padding: 0.1em;
   border-radius: 5px;
   outline: 1px solid var(--shadow-color);
   box-shadow: 2px 2px 0px 2px var(--shadow-color);
-  user-select: none;
+
+  /* Typography */
   font-size: 5rem;
+
+  /* Misc */
+  user-select: none;
 }
 
 button:active {
@@ -87,15 +98,19 @@ button:active {
 }
 
 .operator {
-  background-color: var(--operator-btn-color);
+  background-color: var(--operator-btn-bg-color);
 }
 
 .clear {
   grid-column: span 2;
+  background-color: var(--clear-btn-bg-color);
+  color: var(--font-color-inverted);
 }
 
 .del {
   grid-column: span 1;
+  background-color: var(--del-btn-bg-color);
+  color: var(--font-color-inverted);
 }
 
 .zero {
