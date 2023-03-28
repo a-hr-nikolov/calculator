@@ -98,6 +98,10 @@ button:active {
   translate: 2px 2px;
 }
 
+button > * {
+  pointer-events: none;
+}
+
 .number {
   background-color: var(--num-btn-color);
 }
