@@ -1,7 +1,10 @@
 :root {
   --bg-color: rgb(233, 233, 233);
   --font-color: black;
-  --container-color: white;
+  --container-color: rgb(202, 202, 202);
+  --shadow-color: darkslategray;
+  --num-btn-color: rgb(225, 225, 225);
+  --operator-btn-color: orange;
 }
 
 * {
@@ -28,7 +31,7 @@ body {
   border-radius: 15px;
   padding: 1.5rem;
   background-color: var(--container-color);
-  box-shadow: 2px 2px 0 5px rgb(100, 100, 100);
+  box-shadow: 2px 2px 0 5px var(--shadow-color);
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -40,12 +43,12 @@ body {
 #input-field {
   grid-column: span 4;
   text-align: right;
-  background-color: lightgray;
+  background-color: var(--num-btn-color);
   width: 100%;
   padding: 5px 2px;
   margin: 0;
   border: none;
-  box-shadow: inset 1px 1px 0px 3px rgb(114, 114, 114);
+  box-shadow: inset 1px 1px 0px 3px var(--shadow-color);
   font-size: inherit;
 }
 
@@ -66,24 +69,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 0px 2px rgb(114, 114, 114);
+  box-shadow: 2px 2px 0px 2px var(--shadow-color);
   user-select: none;
   padding: 0.1em;
   border-radius: 5px;
+  outline: 1px solid var(--shadow-color);
 }
 
 .number:active,
 .operator:active {
-  box-shadow: inset 2px 2px 0px 2px rgb(114, 114, 114);
-  translate: 3px;
+  box-shadow: inset 2px 2px 0px 1px var(--shadow-color);
+  translate: 2px 2px;
 }
 
 .number {
-  background-color: lightgray;
+  background-color: var(--num-btn-color);
 }
 
 .operator {
-  background-color: orange;
+  background-color: var(--operator-btn-color);
 }
 
 .clear {
