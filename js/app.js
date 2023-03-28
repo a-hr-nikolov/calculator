@@ -1,15 +1,15 @@
 import { add, subtract, multiply, divide } from './mathoperations.js';
 
-const buttons = document.querySelectorAll('button');
 const numbers = document.querySelectorAll('.number');
-const inputField = document.querySelector('#input-field');
+const display = document.querySelector('.display');
 
 numbers.forEach(item => {
   item.addEventListener('click', inputNumbers);
 });
 
 function inputNumbers(event) {
-  inputField.value += event.target.value;
+  if (display.textContent === '0') display.textContent = '';
+  display.textContent += event.target.value;
 }
 
 function operate(operator, a, b) {

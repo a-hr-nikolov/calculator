@@ -40,9 +40,12 @@ body {
   place-items: stretch;
 }
 
-#input-field {
+.display {
   grid-column: span 4;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-wrap: wrap;
   background-color: var(--num-btn-color);
   width: 100%;
   padding: 5px 2px;
@@ -50,10 +53,7 @@ body {
   border: none;
   box-shadow: inset 1px 1px 0px 3px var(--shadow-color);
   font-size: inherit;
-}
-
-#input-field:focus {
-  outline: none;
+  height: 2.5em;
 }
 
 .number-pad {
