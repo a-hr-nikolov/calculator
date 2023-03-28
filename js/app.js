@@ -23,6 +23,7 @@ function clearDisplay() {
 
 function deleteLastCharacter() {
   display.textContent = display.textContent.slice(0, -1);
+  if (display.textContent === '') display.textContent = '0';
 }
 
 function operate(operator, a, b) {
