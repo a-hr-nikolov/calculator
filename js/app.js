@@ -10,6 +10,7 @@ const pointButton = document.querySelector('.point');
 const operatorButtons = document.querySelectorAll('.operator');
 
 // Variable declarations
+let characterLimit = calcCharacterLimit();
 let operandA = null;
 let operandB = null;
 let operation = null;
@@ -31,22 +32,36 @@ operatorButtons.forEach(item => {
 });
 
 // functions
-function inputNumbers(event) {
+function calcCharacterLimit() {
   const displayWidth =
     parseFloat(getComputedStyle(display).width) -
     parseFloat(getComputedStyle(display).paddingLeft) * 2;
+
   const displayTextWidth = parseFloat(getComputedStyle(displayText).width);
+
   const characterWidth = displayTextWidth / displayText.textContent.length;
+
+  // The -1 at the end will reserve space for negative outputs
+  return Math.floor(displayWidth / characterWidth) - 1;
+}
+
+function inputNumbers(event) {
+  // const displayWidth =
+  //   parseFloat(getComputedStyle(display).width) -
+  //   parseFloat(getComputedStyle(display).paddingLeft) * 2;
+  // const displayTextWidth = parseFloat(getComputedStyle(displayText).width);
+  // const characterWidth = displayTextWidth / displayText.textContent.length;
 
   if (flagOverwrite === true) {
     flagOverwrite = false;
     displayText.textContent = '';
   }
 
-  if (displayWidth < characterWidth * (displayText.textContent.length + 2))
-    return;
+  // if (displayWidth < characterWidth * (displayText.textContent.length + 2))
+  //   return;
 
-  // if (displayText.textContent === '0') displayText.textContent = '';
+  if (displayText.textContent.length >= characterLimit) return;
+
   displayText.textContent += event.target.value;
 }
 
