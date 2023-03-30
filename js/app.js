@@ -41,8 +41,7 @@ function calcCharacterLimit() {
 
   const characterWidth = displayTextWidth / displayText.textContent.length;
 
-  // The -1 at the end will reserve space for negative outputs
-  return Math.floor(displayWidth / characterWidth) - 1;
+  return Math.floor(displayWidth / characterWidth);
 }
 
 function inputNumbers(event) {
@@ -74,7 +73,9 @@ function deleteLastCharacter() {
     displayText.textContent = '0';
     return;
   }
+
   displayText.textContent = displayText.textContent.slice(0, -1);
+
   if (displayText.textContent.length === 0) {
     displayText.textContent = '0';
     flagOverwrite = true;
@@ -109,6 +110,12 @@ function prepareForOperation(event) {
   }
   operandB = parseFloat(displayText.textContent);
   operandA = operate(operation, operandA, operandB);
+
+  const outputLength = `${operandA}`.length;
+  if (outputLength > characterLimit) {
+    displayText.textContent = 'OOS';
+    return;
+  }
   displayText.textContent = `${operandA}`;
   operation = event.target.value;
   if (operation === 'return') {
@@ -118,3 +125,9 @@ function prepareForOperation(event) {
 }
 
 // https://mrbuddh4.github.io/calculator/
+
+// TODO
+// Shouldn't be able to input multiple starting 0.
+// When exceeding character limit, display font shrinks by a few
+// pixels, until it gets to a max character limit.
+// This is done through a onChange eventListener.
