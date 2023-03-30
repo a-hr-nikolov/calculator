@@ -111,13 +111,18 @@ function prepareForOperation(event) {
   operandB = parseFloat(displayText.textContent);
   operandA = operate(operation, operandA, operandB);
 
-  const outputLength = `${operandA}`.length;
-  if (outputLength > characterLimit) {
-    displayText.textContent = 'OOS';
-    return;
-  }
-  displayText.textContent = `${operandA}`;
+  let stringA = `${operandA}`;
+  if (stringA.length > characterLimit) {
+    let firstFourDigits = stringA.match(/^-?\d{4}/);
+    firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
+
+    // -1 accounts for the decimal point, which should be counted in the length
+    let exponentNumber = `${stringA.length - (firstFourDigits.length - 1)}`;
+    displayText.textContent = `${firstFourDigits}e+${exponentNumber}`;
+  } else displayText.textContent = `${operandA}`;
+
   operation = event.target.value;
+
   if (operation === 'return') {
     operandA = null;
     operandB = null;
@@ -131,3 +136,5 @@ function prepareForOperation(event) {
 // When exceeding character limit, display font shrinks by a few
 // pixels, until it gets to a max character limit.
 // This is done through a onChange eventListener.
+
+// Add exponentiation, sqrt,
