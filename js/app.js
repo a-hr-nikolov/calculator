@@ -46,19 +46,10 @@ function calcCharacterLimit() {
 }
 
 function inputNumbers(event) {
-  // const displayWidth =
-  //   parseFloat(getComputedStyle(display).width) -
-  //   parseFloat(getComputedStyle(display).paddingLeft) * 2;
-  // const displayTextWidth = parseFloat(getComputedStyle(displayText).width);
-  // const characterWidth = displayTextWidth / displayText.textContent.length;
-
   if (flagOverwrite === true) {
     flagOverwrite = false;
     displayText.textContent = '';
   }
-
-  // if (displayWidth < characterWidth * (displayText.textContent.length + 2))
-  //   return;
 
   if (displayText.textContent.length >= characterLimit) return;
 
