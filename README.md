@@ -20,3 +20,7 @@ There wasn't anything particularly challenging, aside from the fact that one has
 
 1. Make the design responsive
 2. Handle longer outputs
+
+## Challenges
+
+1. Converting numbers to scientific notation. The logic wasn't hard, but it was hard fighting against JavaScript's built-in conversions, mainly because I didn't know it existed.
