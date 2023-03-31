@@ -1,4 +1,4 @@
-import { add, subtract, multiply, divide, operate } from './mathoperations.js';
+import { operate } from './mathoperations.js';
 
 // Selectors
 const display = document.querySelector('.display');
@@ -124,8 +124,5 @@ function prepareForOperation(event) {
 // This is done through a onChange eventListener.
 
 // Add exponentiation, sqrt,
-
-// Display -0. and 0. numbers in scientific notation
-// Fix the display of NaN when 1/3
 
 // Add button inputs
