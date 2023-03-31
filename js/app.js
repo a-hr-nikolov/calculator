@@ -114,9 +114,10 @@ function prepareForOperation(event) {
   let stringA = `${operandA}`;
   if (stringA.length > characterLimit) {
     console.log(stringA);
-    let firstFourDigits = stringA.match(/^-?\d{4}/);
+    let firstFourDigits = stringA.match(/^-?(\d\.?){4}/);
     console.log(firstFourDigits);
     firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
+    console.log(firstFourDigits);
 
     // -1 accounts for the decimal point, which should be counted in the length
     let exponentNumber = `${stringA.length - (firstFourDigits.length - 1)}`;
@@ -143,3 +144,5 @@ function prepareForOperation(event) {
 
 // Display -0. and 0. numbers in scientific notation
 // Fix the display of NaN when 1/3
+
+// Add button inputs
