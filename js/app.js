@@ -113,15 +113,20 @@ function prepareForOperation(event) {
 
   let stringA = `${operandA}`;
   if (stringA.length > characterLimit) {
-    console.log(stringA);
-    let firstFourDigits = stringA.match(/^-?(\d\.?){4}/);
-    console.log(firstFourDigits);
-    firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
-    console.log(firstFourDigits);
+    console.log(stringA.slice(0, 5));
+    if (stringA.slice(0, characterLimit).includes('.')) {
+      displayText.textContent = stringA.slice(0, characterLimit);
+    } else {
+      let firstFourDigits = stringA.match(/^-?\d{4}/)[0];
+      console.log(firstFourDigits);
 
-    // -1 accounts for the decimal point, which should be counted in the length
-    let exponentNumber = `${stringA.length - (firstFourDigits.length - 1)}`;
-    displayText.textContent = `${firstFourDigits}e+${exponentNumber}`;
+      firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
+      console.log(firstFourDigits);
+
+      // -1 accounts for the decimal point, which should be counted in the length
+      let exponentNumber = `${stringA.length - (firstFourDigits.length - 1)}`;
+      displayText.textContent = `${firstFourDigits}e+${exponentNumber}`;
+    }
   } else displayText.textContent = `${operandA}`;
 
   operation = event.target.value;
