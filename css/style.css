@@ -98,11 +98,18 @@ button:active {
   translate: 2px 2px;
 }
 
+@media (hover: hover) {
+  button:hover {
+    filter: brightness(1.1);
+  }
+}
+
 button > * {
   pointer-events: none;
 }
 
-.number {
+.number,
+.point {
   background-color: var(--num-btn-color);
 }
 
