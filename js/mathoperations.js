@@ -34,4 +34,4 @@ function operate(operator, a, b) {
   }
 }
 
-export { add, subtract, multiply, divide, operate };
+export { operate };
