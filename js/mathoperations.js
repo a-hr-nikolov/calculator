@@ -15,4 +15,23 @@ function divide(a, b) {
   return a / b;
 }
 
-export { add, subtract, multiply, divide };
+function operate(operator, a, b) {
+  switch (operator) {
+    case 'add':
+      return add(a, b);
+    // break;
+    case 'subtract':
+      return subtract(a, b);
+    // break;
+    case 'multiply':
+      return multiply(a, b);
+    // break;
+    case 'divide':
+      return divide(a, b);
+    // break;
+    default:
+      return a;
+  }
+}
+
+export { add, subtract, multiply, divide, operate };
