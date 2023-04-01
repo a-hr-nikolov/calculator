@@ -32,7 +32,14 @@ operatorButtons.forEach(item => {
   item.addEventListener('click', executeOperationAlgorithm);
 });
 
+window.addEventListener('keydown', routeInput);
+
 // Functions
+function routeInput(event) {
+  if (parseInt(event.key) >= 0) {
+  }
+}
+
 function calcCharacterLimit() {
   const displayWidth =
     parseFloat(getComputedStyle(display).width) -
@@ -126,7 +133,6 @@ function executeOperationAlgorithm(event) {
 // https://mrbuddh4.github.io/calculator/
 
 // TODO
-// Shouldn't be able to input multiple starting 0.
 // When exceeding character limit, display font shrinks by a few
 // pixels, until it gets to a max character limit.
 // This is done through a onChange eventListener.
