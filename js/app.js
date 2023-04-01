@@ -29,7 +29,7 @@ numberButtons.forEach(item => {
 });
 
 operatorButtons.forEach(item => {
-  item.addEventListener('click', prepareForOperation);
+  item.addEventListener('click', executeOperationAlgorithm);
 });
 
 // Functions
@@ -46,6 +46,16 @@ function calcCharacterLimit() {
 }
 
 function inputNumbers(event) {
+  // Disabling multiple consecutive zeros before decimal point
+  if (
+    (flagOverwrite === true || displayText.textContent === '0') &&
+    event.target.value === '0'
+  ) {
+    displayText.textContent = '0';
+    flagOverwrite = true;
+    return;
+  }
+
   if (flagOverwrite === true) {
     flagOverwrite = false;
     displayText.textContent = '';
@@ -57,8 +67,14 @@ function inputNumbers(event) {
 }
 
 function inputDecimal() {
+  // Guard clause to stop multiple decimal points
   if (displayText.textContent.includes('.')) return;
-  if (flagOverwrite === true) flagOverwrite = false;
+
+  // Allowing point overwriting to assume '0.'
+  if (flagOverwrite === true) {
+    flagOverwrite = false;
+    displayText.textContent = '0';
+  }
   displayText.textContent += '.';
 }
 
@@ -83,7 +99,7 @@ function deleteLastCharacter() {
   }
 }
 
-function prepareForOperation(event) {
+function executeOperationAlgorithm(event) {
   flagOverwrite = true;
   if (operandA === null) {
     operandA = parseFloat(displayText.textContent);
@@ -93,11 +109,11 @@ function prepareForOperation(event) {
   operandB = parseFloat(displayText.textContent);
   operandA = operate(operation, operandA, operandB);
 
-  let stringA = `${operandA}`;
+  const stringA = `${operandA}`;
   if (stringA.length > characterLimit) {
     console.log(stringA);
     displayText.textContent = reduceNumCharacters(stringA, characterLimit);
-  } else displayText.textContent = `${operandA}`;
+  } else displayText.textContent = stringA;
 
   operation = event.target.value;
 
