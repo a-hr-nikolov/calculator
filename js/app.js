@@ -82,6 +82,22 @@ function deleteLastCharacter() {
   }
 }
 
+function reduceNumCharacters(string, charLimit) {
+  if (string.length <= charLimit) return;
+
+  // This checks for decimal point numbers, which can easily be truncated.
+  if (string.slice(0, charLimit).includes('.')) {
+    return string.slice(0, charLimit);
+  }
+
+  let firstFourDigits = string.match(/^-?\d{4}/)[0];
+  firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
+
+  // -1 accounts for the decimal point, which should be counted in the length
+  let exponentNumber = `${string.length - (firstFourDigits.length - 1)}`;
+  return `${firstFourDigits}e+${exponentNumber}`;
+}
+
 function prepareForOperation(event) {
   flagOverwrite = true;
   if (operandA === null) {
@@ -94,17 +110,18 @@ function prepareForOperation(event) {
 
   let stringA = `${operandA}`;
   if (stringA.length > characterLimit) {
-    // This checks for decimal point numbers, which can easily be truncated.
-    if (stringA.slice(0, characterLimit).includes('.')) {
-      displayText.textContent = stringA.slice(0, characterLimit);
-    } else {
-      let firstFourDigits = stringA.match(/^-?\d{4}/)[0];
-      firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
+    displayText.textContent = reduceNumCharacters(stringA, characterLimit);
+    // // This checks for decimal point numbers, which can easily be truncated.
+    // if (stringA.slice(0, characterLimit).includes('.')) {
+    //   displayText.textContent = stringA.slice(0, characterLimit);
+    // } else {
+    //   let firstFourDigits = stringA.match(/^-?\d{4}/)[0];
+    //   firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
 
-      // -1 accounts for the decimal point, which should be counted in the length
-      let exponentNumber = `${stringA.length - (firstFourDigits.length - 1)}`;
-      displayText.textContent = `${firstFourDigits}e+${exponentNumber}`;
-    }
+    //   // -1 accounts for the decimal point, which should be counted in the length
+    //   let exponentNumber = `${stringA.length - (firstFourDigits.length - 1)}`;
+    //   displayText.textContent = `${firstFourDigits}e+${exponentNumber}`;
+    // }
   } else displayText.textContent = `${operandA}`;
 
   operation = event.target.value;
