@@ -36,8 +36,15 @@ window.addEventListener('keydown', routeInput);
 
 // Functions
 function routeInput(event) {
-  if (parseInt(event.key) >= 0) {
-  }
+  console.log(event.key);
+  // To pass that object when calling the other event handler functions
+  const eventObj = {
+    target: { value: event.key },
+  };
+
+  if (parseInt(event.key) >= 0) inputNumbers(eventObj);
+
+  if (event.key === '.') inputDecimal(eventObj);
 }
 
 function calcCharacterLimit() {
@@ -139,4 +146,6 @@ function executeOperationAlgorithm(event) {
 
 // Add exponentiation, sqrt,
 
-// Add button inputs
+// Add button inputs`
+
+// Add +/- button
