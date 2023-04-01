@@ -149,8 +149,6 @@ function executeOperationAlgorithm(event) {
 // pixels, until it gets to a max character limit.
 // This is done through a onChange eventListener.
 
-// Add exponentiation, sqrt,
-
-// Add button inputs`
+// Add exponentiation, sqrt and button inputs
 
 // Add +/- button
