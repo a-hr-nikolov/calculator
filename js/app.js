@@ -36,15 +36,20 @@ window.addEventListener('keydown', routeInput);
 
 // Functions
 function routeInput(event) {
-  console.log(event.key);
+  // To prevent Enter from activating the focused element
+  event.preventDefault();
+
   // To pass that object when calling the other event handler functions
   const eventObj = {
     target: { value: event.key },
   };
 
-  if (parseInt(event.key) >= 0) inputNumbers(eventObj);
-
-  if (event.key === '.') inputDecimal(eventObj);
+  if (/^\.$/.test(event.key)) inputDecimal();
+  if (/^\d$/.test(event.key)) inputNumbers(eventObj);
+  if (/^[\*\=\-\+\/]$/.test(event.key) || event.key === 'Enter')
+    executeOperationAlgorithm(eventObj);
+  if (event.key === 'Escape') clearDisplay();
+  if (event.key === 'Backspace') deleteLastCharacter();
 }
 
 function calcCharacterLimit() {
@@ -131,7 +136,7 @@ function executeOperationAlgorithm(event) {
 
   operation = event.target.value;
 
-  if (operation === 'return') {
+  if (operation === '=' || operation === 'Enter') {
     operandA = null;
     operandB = null;
   }
