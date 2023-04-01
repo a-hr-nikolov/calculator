@@ -83,18 +83,23 @@ function deleteLastCharacter() {
 }
 
 function reduceNumCharacters(string, charLimit) {
+  // Guard clause
   if (string.length <= charLimit) return;
 
-  // This checks for decimal point numbers, which can easily be truncated.
+  // Decimal point number check; can be easily reduced
   if (string.slice(0, charLimit).includes('.')) {
     return string.slice(0, charLimit);
   }
 
-  let firstFourDigits = string.match(/^-?\d{4}/)[0];
-  firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
+  // The code below can easily be done in a single return statement
+  // but I want to make it easier to read and understand.
 
-  // -1 accounts for the decimal point, which should be counted in the length
-  let exponentNumber = `${string.length - (firstFourDigits.length - 1)}`;
+  // We use -1 on exponentNumber, because the decimal point is after
+  // the first digit. So if we multiply firstFourDigits by 10^exponentNumber
+  // we will get the same number of digits as the initial number.
+  const firstFourDigits = `${parseFloat(string.match(/^-?\d{4}/)[0]) / 1000}`;
+  const exponentNumber = `${string.length - 1}`;
+
   return `${firstFourDigits}e+${exponentNumber}`;
 }
 
@@ -110,18 +115,8 @@ function prepareForOperation(event) {
 
   let stringA = `${operandA}`;
   if (stringA.length > characterLimit) {
+    console.log(stringA);
     displayText.textContent = reduceNumCharacters(stringA, characterLimit);
-    // // This checks for decimal point numbers, which can easily be truncated.
-    // if (stringA.slice(0, characterLimit).includes('.')) {
-    //   displayText.textContent = stringA.slice(0, characterLimit);
-    // } else {
-    //   let firstFourDigits = stringA.match(/^-?\d{4}/)[0];
-    //   firstFourDigits = `${parseFloat(firstFourDigits) / 1000}`;
-
-    //   // -1 accounts for the decimal point, which should be counted in the length
-    //   let exponentNumber = `${stringA.length - (firstFourDigits.length - 1)}`;
-    //   displayText.textContent = `${firstFourDigits}e+${exponentNumber}`;
-    // }
   } else displayText.textContent = `${operandA}`;
 
   operation = event.target.value;
