@@ -9,6 +9,7 @@ const clearButton = document.querySelector('.clear');
 const numberButtons = document.querySelectorAll('.number');
 const pointButton = document.querySelector('.point');
 const operatorButtons = document.querySelectorAll('.operator');
+const plusMinusButton = document.querySelector('.plus-minus');
 
 // Max char limit that is based on JS built-in scientific notation shortener
 let characterLimit = 17;
@@ -28,6 +29,7 @@ let flagOverwrite = true;
 delButton.addEventListener('click', deleteLastCharacter);
 clearButton.addEventListener('click', clearDisplay);
 pointButton.addEventListener('click', inputDecimal);
+plusMinusButton.addEventListener('click', negateNumber);
 
 numberButtons.forEach(item => {
   item.addEventListener('click', inputNumbers);
@@ -130,6 +132,13 @@ function deleteLastCharacter() {
   }
 }
 
+function negateNumber() {
+  const newNumber = `${parseFloat(displayText.textContent) * -1}`;
+  if (newNumber.length > characterLimit)
+    newNumber = reduceNumCharacters(newNumber, characterLimit);
+  displayText.textContent = newNumber;
+}
+
 function executeOperationAlgorithm(event) {
   flagOverwrite = true;
   if (operandA === null) {
@@ -166,3 +175,7 @@ function executeOperationAlgorithm(event) {
 
 // Add +/- button
 // How should pressing multiple operators without input change work?
+
+// Fix max characters to be limited at 17 characters and make sure
+// that even when javascript decides to use scientific notation
+// you are fine with it, and can actually use it.
