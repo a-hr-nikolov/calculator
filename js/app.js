@@ -10,6 +10,12 @@ const numberButtons = document.querySelectorAll('.number');
 const pointButton = document.querySelector('.point');
 const operatorButtons = document.querySelectorAll('.operator');
 
+// Max char limit that is based on JS built-in scientific notation shortener
+const maxCharacters = 17;
+
+// Always makes sure that the font is small enough to fit 17 chars on screen;
+display.style.fontSize = calcDisplayFontSize(maxCharacters);
+
 // Variable declarations
 let characterLimit = calcCharacterLimit();
 let operandA = null;
@@ -50,6 +56,25 @@ function routeInput(event) {
     executeOperationAlgorithm(eventObj);
   if (event.key === 'Escape') clearDisplay();
   if (event.key === 'Backspace') deleteLastCharacter();
+}
+
+function calcDisplayFontSize(charLimit) {
+  // Numeric value for the responsive width and font size of the display
+  const displayWidth =
+    parseFloat(getComputedStyle(display).width) -
+    parseFloat(getComputedStyle(display).paddingLeft) * 2;
+  const displayFontSize = parseFloat(getComputedStyle(display).fontSize);
+
+  // Though the initial calculation is always done on a single character (0)
+  // it is better to have the flexibility to change the font-size regardless
+  // of how many characters are already on the screen.
+  const displayTextWidth = parseFloat(getComputedStyle(displayText).width);
+  const characterWidth = displayTextWidth / displayText.textContent.length;
+
+  // Calculating the proportions to adjust font size
+  const charLimitAtCurrentFontSize = Math.floor(displayWidth / characterWidth);
+  const proportionAdjustment = charLimitAtCurrentFontSize / charLimit;
+  return `${Math.floor(displayFontSize * proportionAdjustment)}px`;
 }
 
 function calcCharacterLimit() {
