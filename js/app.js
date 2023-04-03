@@ -11,13 +11,12 @@ const pointButton = document.querySelector('.point');
 const operatorButtons = document.querySelectorAll('.operator');
 
 // Max char limit that is based on JS built-in scientific notation shortener
-const maxCharacters = 17;
+let characterLimit = 17;
 
 // Always makes sure that the font is small enough to fit 17 chars on screen;
-display.style.fontSize = calcDisplayFontSize(maxCharacters);
+display.style.fontSize = calcDisplayFontSize(characterLimit);
 
 // Variable declarations
-let characterLimit = calcCharacterLimit();
 let operandA = null;
 let operandB = null;
 let operation = null;
@@ -74,19 +73,7 @@ function calcDisplayFontSize(charLimit) {
   // Calculating the proportions to adjust font size
   const charLimitAtCurrentFontSize = Math.floor(displayWidth / characterWidth);
   const proportionAdjustment = charLimitAtCurrentFontSize / charLimit;
-  return `${Math.floor(displayFontSize * proportionAdjustment)}px`;
-}
-
-function calcCharacterLimit() {
-  const displayWidth =
-    parseFloat(getComputedStyle(display).width) -
-    parseFloat(getComputedStyle(display).paddingLeft) * 2;
-
-  const displayTextWidth = parseFloat(getComputedStyle(displayText).width);
-
-  const characterWidth = displayTextWidth / displayText.textContent.length;
-
-  return Math.floor(displayWidth / characterWidth);
+  return `${Math.ceil(displayFontSize * proportionAdjustment)}px`;
 }
 
 function inputNumbers(event) {
@@ -154,6 +141,7 @@ function executeOperationAlgorithm(event) {
   operandA = operate(operation, operandA, operandB);
 
   const stringA = `${operandA}`;
+  console.log(stringA);
   if (stringA.length > characterLimit) {
     console.log(stringA);
     displayText.textContent = reduceNumCharacters(stringA, characterLimit);
@@ -177,3 +165,4 @@ function executeOperationAlgorithm(event) {
 // Add exponentiation, sqrt, percent and button inputs
 
 // Add +/- button
+// How should pressing multiple operators without input change work?
