@@ -129,10 +129,6 @@ button > * {
   color: var(--font-color-inverted);
 }
 
-.zero {
-  grid-column: span 2;
-}
-
 @media (max-width: 640px) {
   body {
     font-size: 10vmin;
