@@ -31,7 +31,10 @@ export function reduceNumCharacters(string, charLimit) {
   // We use -1 on exponentNumber, because the decimal point is after
   // the first digit. So if we multiply firstFourDigits by 10^exponentNumber
   // we will get the same number of digits as the initial number.
-  const firstFourDigits = `${parseFloat(string.match(/^-?\d{4}/)[0]) / 1000}`;
+  // const firstFourDigits = `${parseFloat(string.match(/^-?\d{4}/)[0]) / 1000}`;
+  // const exponentNumber = `${string.length - 1}`;
+
+  const firstFourDigits = `${parseFloat(roundToLimit(string, 4)) / 1000}`;
   const exponentNumber = `${string.length - 1}`;
 
   return `${firstFourDigits}e+${exponentNumber}`;
