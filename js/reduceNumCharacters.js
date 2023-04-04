@@ -9,7 +9,7 @@ export function reduceNumCharacters(string, charLimit) {
     // +1 accounts for the 'e' that disappears in the split
     const exponentLength = arrayFromString[1].length + 1;
 
-    // For reducing the number of characters before exponent
+    // Reducing the number of characters before exponent
     const baseCharLimit = charLimit - exponentLength;
     const reducedBase = reduceNumCharacters(arrayFromString[0], baseCharLimit);
 
@@ -20,38 +20,34 @@ export function reduceNumCharacters(string, charLimit) {
     return `${reducedBase}e+${exponentValue}`;
   }
 
-  // Decimal point number check to round the numbers
+  // Decimal point check handles simpler rounding cases
   if (string.slice(0, charLimit).includes('.')) {
-    return string.slice(0, charLimit);
+    return roundToLimit(string, charLimit);
   }
 
-  // The code below can easily be done in a single return statement
-  // but I want to make it easier to read and understand.
-
-  // We use -1 on exponentNumber, because the decimal point is after
-  // the first digit. So if we multiply firstFourDigits by 10^exponentNumber
-  // we will get the same number of digits as the initial number.
-  // const firstFourDigits = `${parseFloat(string.match(/^-?\d{4}/)[0]) / 1000}`;
-  // const exponentNumber = `${string.length - 1}`;
-
+  // -1 on exponentNumber, because the decimal point is after
+  // the first digit. Multiplying firstFourDigits by 10^exponentNumber
+  // returns the same number of digits as the initial number.
   const firstFourDigits = `${parseFloat(roundToLimit(string, 4)) / 1000}`;
-  const exponentNumber = `${string.length - 1}`;
+  const exponentValue = `${string.length - 1}`;
 
-  return `${firstFourDigits}e+${exponentNumber}`;
+  return `${firstFourDigits}e+${exponentValue}`;
 
-  // Functions
+  // Handling rounding when shortening the numbers
   function roundToLimit(string, characterLimit) {
     // + 1 accounts for the number we need to know in order to round
-    let reducedStringToArray = string.slice(0, characterLimit + 1).split('');
-    let filteredString = reducedStringToArray
+    const reducedStringToArray = string.slice(0, characterLimit + 1).split('');
+    const filteredString = reducedStringToArray
       .filter(item => item !== '.')
       .join('');
     let roundedNumber = `${Math.round(+filteredString / 10)}`;
 
     if (reducedStringToArray.includes('.')) {
-      const placeOfDecimal = reducedStringToArray.indexOf('.') - 1;
+      const placeOfDecimal = reducedStringToArray.indexOf('.');
+      console.log(placeOfDecimal);
       roundedNumber = roundedNumber.split('');
       roundedNumber.splice(placeOfDecimal, 0, '.');
+      console.log(roundedNumber);
       roundedNumber = roundedNumber.join('');
     }
 
