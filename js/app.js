@@ -180,3 +180,6 @@ function executeOperationAlgorithm(event) {
 // How should pressing multiple operators without input change work?
 
 // Check if the rounding function works
+
+// Known issue - Char limit on initial load is problematic, because
+// the JS doesn't apply styling for some reason.
