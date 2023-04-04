@@ -2,6 +2,21 @@ export function reduceNumCharacters(string, charLimit) {
   // Guard clause
   if (string.length <= charLimit) return;
 
+  if (string.includes('e')) {
+    let arrayFromString = string.split('e');
+
+    // +1 accounts for the 'e' that disappears in the split
+    // The code below reduces the number of character before the exponent
+    const exponentLength = arrayFromString[1].length + 1;
+    const baseCharLimit = charLimit - exponentLength;
+    const reducedBase = reduceNumCharacters(arrayFromString[0], baseCharLimit);
+
+    let exponentValue = parseInt(arrayFromString[1]);
+    exponentValue += arrayFromString[0].length - reducedBase.length;
+
+    return `${reducedBase}e+${exponentValue}`;
+  }
+
   // Decimal point number check; can be easily reduced
   if (string.slice(0, charLimit).includes('.')) {
     return string.slice(0, charLimit);

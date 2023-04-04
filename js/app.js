@@ -11,8 +11,12 @@ const pointButton = document.querySelector('.point');
 const operatorButtons = document.querySelectorAll('.operator');
 const plusMinusButton = document.querySelector('.plus-minus');
 
-// Max char limit that is based on JS built-in scientific notation shortener
-let characterLimit = 17;
+// The character limit can be either dynamic or static.
+// If the limit is dynamic, the font size of the display will be static.
+// If the limit is static, the font size of the display will be dynamic.
+// Here I've chosen to implement dynamic font size, but the code for
+// a dynamic character limit exists on a module (calcCharacterLimit.js).
+let characterLimit = 12;
 
 // Always makes sure that the font is small enough to fit 17 chars on screen;
 display.style.fontSize = calcDisplayFontSize(characterLimit);
@@ -67,7 +71,7 @@ function calcDisplayFontSize(charLimit) {
   const displayFontSize = parseFloat(getComputedStyle(display).fontSize);
 
   // Though the initial calculation is always done on a single character (0)
-  // it is better to have the flexibility to change the font-size regardless
+  // it is better to have the flexibility to change the font size regardless
   // of how many characters are already on the screen.
   const displayTextWidth = parseFloat(getComputedStyle(displayText).width);
   const characterWidth = displayTextWidth / displayText.textContent.length;
