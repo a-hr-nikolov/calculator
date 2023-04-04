@@ -37,5 +37,21 @@ export function reduceNumCharacters(string, charLimit) {
   return `${firstFourDigits}e+${exponentNumber}`;
 
   // Functions
-  function handleMathRounding() {}
+  function roundToLimit(string, characterLimit) {
+    // + 1 accounts for the number we need to know in order to round
+    let reducedStringToArray = string.slice(0, characterLimit + 1).split('');
+    let filteredString = reducedStringToArray
+      .filter(item => item !== '.')
+      .join('');
+    let roundedNumber = `${Math.round(+filteredString / 10)}`;
+
+    if (reducedStringToArray.includes('.')) {
+      const placeOfDecimal = reducedStringToArray.indexOf('.') - 1;
+      roundedNumber = roundedNumber.split('');
+      roundedNumber.splice(placeOfDecimal, 0, '.');
+      roundedNumber = roundedNumber.join('');
+    }
+
+    return roundedNumber;
+  }
 }
