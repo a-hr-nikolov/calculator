@@ -43,8 +43,8 @@ window.addEventListener('keydown', routeInput);
 
 // Functions
 function routeInput(event) {
-  // To prevent Enter from activating the focused element
-  event.preventDefault();
+  // To prevent enter from activating the focused button
+  if (event.key === 'Enter') event.preventDefault();
 
   // To pass that object when calling the other event handler functions
   const eventObj = {
@@ -173,9 +173,10 @@ function executeOperationAlgorithm(event) {
 
 // Add exponentiation, sqrt, percent and button inputs
 
-// Add +/- button
 // How should pressing multiple operators without input change work?
 
 // Fix max characters to be limited at 17 characters and make sure
 // that even when javascript decides to use scientific notation
 // you are fine with it, and can actually use it.
+
+// ReduceNumbCharater doesn't work for some reason
