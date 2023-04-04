@@ -179,8 +179,4 @@ function executeOperationAlgorithm(event) {
 
 // How should pressing multiple operators without input change work?
 
-// Fix max characters to be limited at 17 characters and make sure
-// that even when javascript decides to use scientific notation
-// you are fine with it, and can actually use it.
-
-// ReduceNumbCharater doesn't work for some reason
+// Check if the rounding function works
