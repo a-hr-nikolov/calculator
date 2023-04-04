@@ -16,7 +16,7 @@ const plusMinusButton = document.querySelector('.plus-minus');
 // If the limit is static, the font size of the display will be dynamic.
 // Here I've chosen to implement dynamic font size, but the code for
 // a dynamic character limit exists on a module (calcCharacterLimit.js).
-let characterLimit = 12;
+let characterLimit = 17;
 
 // Always makes sure that the font is small enough to fit 17 chars on screen;
 display.style.fontSize = calcDisplayFontSize(characterLimit);
