@@ -6,6 +6,8 @@
 
   --container-color: #80a1c1;
 
+  --display-color: #e5e5e5;
+
   --num-btn-color: #d9cfc1;
   --operator-btn-bg-color: #eee3ab;
   --clear-btn-bg-color: #ef5b5b;
@@ -36,7 +38,7 @@ body {
 .calc-container {
   width: min(600px, 90%);
   border-radius: 15px;
-  padding: 1.5rem;
+  padding: 2.2rem;
   background-color: var(--container-color);
 
   display: grid;
@@ -44,6 +46,8 @@ body {
   gap: 15px;
 
   place-items: stretch;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .display {
@@ -52,12 +56,15 @@ body {
   justify-content: flex-end;
   align-items: flex-end;
   flex-wrap: wrap;
-  background-color: var(--num-btn-color);
+  background-color: var(--display-color);
   width: 100%;
   padding: 0.5rem;
   margin: 0;
+  margin-bottom: 1.5vmin;
   border: none;
-  height: 2.5em;
+  border-radius: 10px;
+
+  /* box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); */
 }
 
 .number-pad {
@@ -88,6 +95,11 @@ button {
   /* Misc */
   user-select: none;
   /* box-shadow: var(--box-shadow); */
+
+  background-image: url('../imgs/btn-3d-effect.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 @media (hover: hover) {
@@ -110,38 +122,22 @@ button > * {
 .point,
 .plus-minus {
   background-color: var(--num-btn-color);
-  background-image: url('../imgs/btn-3d-effect.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
 }
 
 .operator {
   background-color: var(--operator-btn-bg-color);
-  background-image: url('../imgs/btn-3d-effect.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
 }
 
 .clear {
   grid-column: span 2;
   background-color: var(--clear-btn-bg-color);
   color: var(--font-color-inverted);
-  background-image: url('../imgs/btn-3d-effect.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
 }
 
 .del {
   grid-column: span 1;
   background-color: var(--del-btn-bg-color);
   color: var(--font-color-inverted);
-  background-image: url('../imgs/btn-3d-effect.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
 }
 
 @media (max-width: 640px) {
