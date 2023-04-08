@@ -12,12 +12,12 @@ const pointButton = document.querySelector('.point');
 const operatorButtons = document.querySelectorAll('.operator');
 const plusMinusButton = document.querySelector('.plus-minus');
 
-// The character limit can be either dynamic or static.
-// If the limit is dynamic, the font size of the display will be static.
-// If the limit is static, the font size of the display will be dynamic.
-// Here I've chosen to implement dynamic font size, but the code for
-// a dynamic character limit exists on a module (calcCharacterLimit.js).
-let characterLimit = calcCharacterLimit(display, displayText);
+// Because the font takes a while to load and causes issues
+// I think I'll be trying to insert my own font
+let characterLimit;
+setTimeout(() => {
+  characterLimit = calcCharacterLimit(display, displayText);
+}, 1000);
 
 // Variable declarations
 let operandA = null;
@@ -116,7 +116,7 @@ function deleteLastCharacter() {
 }
 
 function negateNumber() {
-  const newNumber = `${parseFloat(displayText.textContent) * -1}`;
+  let newNumber = `${parseFloat(displayText.textContent) * -1}`;
   if (newNumber.length > characterLimit)
     newNumber = reduceNumCharacters(newNumber, characterLimit);
   displayText.textContent = newNumber;
