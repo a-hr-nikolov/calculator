@@ -93,15 +93,14 @@ button {
   user-select: none;
 }
 
-button:active {
-  box-shadow: inset 2px 2px 0px 1px var(--shadow-color);
-  translate: 2px 2px;
-}
-
 @media (hover: hover) {
   button:hover {
     filter: brightness(1.1);
   }
+}
+
+button:active {
+  filter: brightness(0.95);
 }
 
 button > * {
@@ -112,22 +111,34 @@ button > * {
 .point,
 .plus-minus {
   background-color: var(--num-btn-color);
+  background-image: url('../imgs/btn-3d-effect.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .operator {
   background-color: var(--operator-btn-bg-color);
+  background-image: url('../imgs/btn-3d-effect.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .clear {
   grid-column: span 2;
   background-color: var(--clear-btn-bg-color);
   color: var(--font-color-inverted);
+  background-image: url('../imgs/btn-3d-effect.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .del {
   grid-column: span 1;
   background-color: var(--del-btn-bg-color);
   color: var(--font-color-inverted);
+  background-image: url('../imgs/btn-3d-effect.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 640px) {

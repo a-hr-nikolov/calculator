@@ -168,18 +168,18 @@ function executeOperationAlgorithm(event) {
   }
 }
 
+display.style.fontSize = calcDisplayFontSize(characterLimit);
+
 // https://mrbuddh4.github.io/calculator/
 
 // TODO
 // When exceeding character limit, display font shrinks by a few
 // pixels, until it gets to a max character limit.
-// This is done through a onChange eventListener.
+// This is done through an onChange eventListener.
 
-// Add exponentiation, sqrt, percent and button inputs
+// Add exponentiation, sqrt, percent and corresponding button inputs
 
 // How should pressing multiple operators without input change work?
-
-// Check if the rounding function works
 
 // Known issue - Char limit on initial load is problematic, because
 // the JS doesn't apply styling for some reason.
