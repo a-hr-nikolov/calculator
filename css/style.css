@@ -4,13 +4,12 @@
   --font-color-main: black;
   --font-color-inverted: white;
 
-  --container-color: rgb(202, 202, 202);
-  --shadow-color: darkslategray;
+  --container-color: #1b9aaa;
 
-  --num-btn-color: rgb(225, 225, 225);
-  --operator-btn-bg-color: orange;
-  --clear-btn-bg-color: rgb(200, 0, 0);
-  --del-btn-bg-color: rgb(152, 152, 152);
+  --num-btn-color: #f8ffe5;
+  --operator-btn-bg-color: #ffc43d;
+  --clear-btn-bg-color: #ef476f;
+  --del-btn-bg-color: #424242;
 }
 
 * {
@@ -29,7 +28,7 @@ body {
   height: 100svh;
   margin: 0;
   font-family: 'Roboto Mono', monospace;
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 .calc-container {
@@ -37,7 +36,6 @@ body {
   border-radius: 15px;
   padding: 1.5rem;
   background-color: var(--container-color);
-  box-shadow: 2px 2px 0 5px var(--shadow-color);
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -57,8 +55,6 @@ body {
   padding: 0.5rem;
   margin: 0;
   border: none;
-  box-shadow: inset 1px 1px 0px 3px var(--shadow-color);
-  font-size: inherit;
   height: 2.5em;
 }
 
@@ -81,10 +77,8 @@ button {
   justify-content: center;
 
   /* Box Model Stuff */
-  padding: 0.1em;
-  border-radius: 5px;
-  outline: 1px solid var(--shadow-color);
-  box-shadow: 2px 2px 0px 2px var(--shadow-color);
+  padding: 0.2em;
+  border-radius: 10px;
 
   /* Typography */
   font-size: inherit;
@@ -112,15 +106,17 @@ button > * {
 .plus-minus {
   background-color: var(--num-btn-color);
   background-image: url('../imgs/btn-3d-effect.png');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
+  background-position: right center;
 }
 
 .operator {
   background-color: var(--operator-btn-bg-color);
   background-image: url('../imgs/btn-3d-effect.png');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
+  background-position: right center;
 }
 
 .clear {
@@ -128,8 +124,9 @@ button > * {
   background-color: var(--clear-btn-bg-color);
   color: var(--font-color-inverted);
   background-image: url('../imgs/btn-3d-effect.png');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
+  background-position: right center;
 }
 
 .del {
@@ -137,8 +134,9 @@ button > * {
   background-color: var(--del-btn-bg-color);
   color: var(--font-color-inverted);
   background-image: url('../imgs/btn-3d-effect.png');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
+  background-position: right center;
 }
 
 @media (max-width: 640px) {
