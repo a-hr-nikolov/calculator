@@ -1,7 +1,4 @@
-// This function is not currently in use. However, it was an important milestone,
-// which I want to keep for now.
-
-function calcCharacterLimit(display, displayText) {
+export function calcCharacterLimit(display, displayText) {
   const displayWidth =
     parseFloat(getComputedStyle(display).width) -
     parseFloat(getComputedStyle(display).paddingLeft) * 2;

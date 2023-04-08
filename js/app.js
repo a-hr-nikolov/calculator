@@ -1,5 +1,6 @@
 import { operate } from './mathoperations.js';
 import { reduceNumCharacters } from './reduceNumCharacters.js';
+import { calcCharacterLimit } from './calcCharacterLimit.js';
 
 // Selectors
 const display = document.querySelector('.display');
@@ -16,10 +17,7 @@ const plusMinusButton = document.querySelector('.plus-minus');
 // If the limit is static, the font size of the display will be dynamic.
 // Here I've chosen to implement dynamic font size, but the code for
 // a dynamic character limit exists on a module (calcCharacterLimit.js).
-let characterLimit = 17;
-
-// Always makes sure that the font is small enough to fit 17 chars on screen;
-display.style.fontSize = calcDisplayFontSize(characterLimit);
+let characterLimit = calcCharacterLimit(display, displayText);
 
 // Variable declarations
 let operandA = null;
@@ -61,25 +59,6 @@ function routeInput(event) {
     executeOperationAlgorithm(eventObj);
   if (event.key === 'Escape') clearDisplay();
   if (event.key === 'Backspace') deleteLastCharacter();
-}
-
-function calcDisplayFontSize(charLimit) {
-  // Numeric value for the responsive width and font size of the display
-  const displayWidth =
-    parseFloat(getComputedStyle(display).width) -
-    parseFloat(getComputedStyle(display).paddingLeft) * 2;
-  const displayFontSize = parseFloat(getComputedStyle(display).fontSize);
-
-  // Though the initial calculation is always done on a single character (0)
-  // it is better to have the flexibility to change the font size regardless
-  // of how many characters are already on the screen.
-  const displayTextWidth = parseFloat(getComputedStyle(displayText).width);
-  const characterWidth = displayTextWidth / displayText.textContent.length;
-
-  // Calculating the proportions to adjust font size
-  const charLimitAtCurrentFontSize = Math.floor(displayWidth / characterWidth);
-  const proportionAdjustment = charLimitAtCurrentFontSize / charLimit;
-  return `${Math.ceil(displayFontSize * proportionAdjustment)}px`;
 }
 
 function inputNumbers(event) {
@@ -167,8 +146,6 @@ function executeOperationAlgorithm(event) {
     operandB = null;
   }
 }
-
-display.style.fontSize = calcDisplayFontSize(characterLimit);
 
 // https://mrbuddh4.github.io/calculator/
 
