@@ -4,12 +4,14 @@
   --font-color-main: black;
   --font-color-inverted: white;
 
-  --container-color: #1b9aaa;
+  --container-color: #80a1c1;
 
-  --num-btn-color: #f8ffe5;
-  --operator-btn-bg-color: #ffc43d;
-  --clear-btn-bg-color: #ef476f;
+  --num-btn-color: #d9cfc1;
+  --operator-btn-bg-color: #eee3ab;
+  --clear-btn-bg-color: #ef5b5b;
   --del-btn-bg-color: #424242;
+
+  --box-shadow: 0.2vmin 0.2vmin 0 0.2vmin rgb(70, 70, 70);
 }
 
 * {
@@ -85,6 +87,7 @@ button {
 
   /* Misc */
   user-select: none;
+  /* box-shadow: var(--box-shadow); */
 }
 
 @media (hover: hover) {
@@ -95,6 +98,8 @@ button {
 
 button:active {
   filter: brightness(0.95);
+  /* translate: 0.3vmin 0.3vmin;
+  box-shadow: none; */
 }
 
 button > * {
