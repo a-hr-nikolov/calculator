@@ -23,6 +23,7 @@ setTimeout(() => {
 let operandA = null;
 let operandB = null;
 let operation = null;
+let operationLockedFlag = false;
 
 // Flag to overwrite input after operation is selected and on clear
 let flagOverwrite = true;
@@ -123,7 +124,12 @@ function negateNumber() {
 }
 
 function executeOperationAlgorithm(event) {
+  if (flagOverwrite === true && /\D/.test(event.target.value)) {
+    operation = event.target.value;
+    return;
+  }
   flagOverwrite = true;
+
   if (operandA === null) {
     operandA = parseFloat(displayText.textContent);
     operation = event.target.value;
@@ -147,16 +153,8 @@ function executeOperationAlgorithm(event) {
   }
 }
 
-// https://mrbuddh4.github.io/calculator/
-
 // TODO
-// When exceeding character limit, display font shrinks by a few
-// pixels, until it gets to a max character limit.
-// This is done through an onChange eventListener.
 
 // Add exponentiation, sqrt, percent and corresponding button inputs
 
 // How should pressing multiple operators without input change work?
-
-// Known issue - Char limit on initial load is problematic, because
-// the JS doesn't apply styling for some reason.
