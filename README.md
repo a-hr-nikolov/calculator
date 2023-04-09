@@ -1,5 +1,7 @@
 # Calculator with vanilla JS
 
+## 👉 [Try it out here](https://a-hr-nikolov.github.io/calculator/)
+
 As it is, this project is fairly simple, so it is no surprise that vanilla JS handles it without much trouble.
 
 There wasn't anything particularly challenging in the initial requirements, aside from the fact that one has to think about how calculators actually work. I like breaking things down and figuring out their step-by-step operation, so that didn't bother me much.
