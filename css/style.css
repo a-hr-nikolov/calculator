@@ -1,10 +1,10 @@
 :root {
-  --bg-color: rgb(233, 233, 233);
+  --bg-color: linear-gradient(135deg, #45364b 0%, #7a4e89 100%);
 
   --font-color-main: black;
   --font-color-inverted: white;
 
-  --container-color: #80a1c1;
+  --container-color: #87abcf;
 
   --display-color: #e5e5e5;
 
@@ -33,9 +33,6 @@ body {
   margin: 0;
   font-family: 'Roboto Mono', monospace;
   font-size: 4rem;
-
-  background: rgb(154, 100, 162);
-  background: linear-gradient(135deg, #45364b 0%, #62466b 100%);
 }
 
 .calc-container {
@@ -141,6 +138,18 @@ button > * {
   grid-column: span 1;
   background-color: var(--del-btn-bg-color);
   color: var(--font-color-inverted);
+}
+
+.signature {
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--font-color-inverted);
+}
+
+a {
+  text-decoration: none;
+  color: var(--container-color);
 }
 
 @media (max-width: 640px) {
