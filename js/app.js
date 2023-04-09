@@ -124,32 +124,34 @@ function negateNumber() {
 }
 
 function executeOperationAlgorithm(event) {
-  if (flagOverwrite === true && /\D/.test(event.target.value)) {
+  function pickOperation() {
     operation = event.target.value;
     operatorButtons.forEach(item => {
       if (item.value === event.target.value) item.classList.add('active');
       else item.classList.remove('active');
     });
+  }
+
+  if (flagOverwrite === true && /\D/.test(event.target.value)) {
+    pickOperation();
     return;
   }
   flagOverwrite = true;
 
   if (operandA === null) {
     operandA = parseFloat(displayText.textContent);
-    operation = event.target.value;
+    pickOperation();
     return;
   }
   operandB = parseFloat(displayText.textContent);
   operandA = operate(operation, operandA, operandB);
 
   const stringA = `${operandA}`;
-  console.log(stringA);
   if (stringA.length > characterLimit) {
-    console.log(stringA);
     displayText.textContent = reduceNumCharacters(stringA, characterLimit);
   } else displayText.textContent = stringA;
 
-  operation = event.target.value;
+  pickOperation();
 
   if (operation === '=' || operation === 'Enter') {
     operandA = null;
@@ -160,5 +162,3 @@ function executeOperationAlgorithm(event) {
 // TODO
 
 // Add exponentiation, sqrt, percent and corresponding button inputs
-
-// How should pressing multiple operators without input change work?
