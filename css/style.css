@@ -31,7 +31,7 @@ body {
   color: var(--font-color-main);
   height: 100svh;
   margin: 0;
-  font-family: 'Roboto Mono', monospace;
+  font-family: monospace;
   font-size: 4rem;
 }
 
