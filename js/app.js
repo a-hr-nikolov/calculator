@@ -126,6 +126,10 @@ function negateNumber() {
 function executeOperationAlgorithm(event) {
   if (flagOverwrite === true && /\D/.test(event.target.value)) {
     operation = event.target.value;
+    operatorButtons.forEach(item => {
+      if (item.value === event.target.value) item.classList.add('active');
+      else item.classList.remove('active');
+    });
     return;
   }
   flagOverwrite = true;

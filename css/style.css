@@ -153,6 +153,10 @@ a {
   color: var(--container-color);
 }
 
+.active {
+  filter: brightness(0.9);
+}
+
 @media (max-width: 640px) {
   body {
     font-size: 10vmin;
