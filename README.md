@@ -21,10 +21,10 @@ However, when I decided to include extended functionality, things got a little c
 ## My additions
 
 1. Make the design responsive
-2. Handle longer outputs
+2. Handle longer outputs (with scientific notation or truncation)
 3. Add a +/- button
 
 ## Challenges
 
-1. Converting numbers to scientific notation. The logic wasn't hard, but it was hard fighting against JavaScript's built-in conversions, mainly because I didn't know it existed.
+1. Converting numbers to scientific notation. The logic wasn't hard, but it was hard fighting against JavaScript's built-in conversion, mainly because I didn't know it existed.
 2. Rounding numbers when shortening them. While JavaScript has its built-in Math functions, you cannot simply use them to round numbers when shortening them, because the shortening function works in a different way. I had to create an entire separate rounding function, which rounded the last digit of the shortened number, before any further operation can be done it (e.g. attaching an exponent).
