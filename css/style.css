@@ -9,7 +9,7 @@
   --display-color: #e5e5e5;
 
   --num-btn-color: #d9cfc1;
-  --operator-btn-bg-color: #eee3ab;
+  --operator-btn-bg-color: #ffb74b;
   --clear-btn-bg-color: #ef5b5b;
   --del-btn-bg-color: #424242;
 
@@ -33,6 +33,9 @@ body {
   margin: 0;
   font-family: 'Roboto Mono', monospace;
   font-size: 4rem;
+
+  background: rgb(154, 100, 162);
+  background: linear-gradient(135deg, #45364b 0%, #62466b 100%);
 }
 
 .calc-container {
@@ -91,10 +94,10 @@ button {
 
   /* Typography */
   font-size: inherit;
+  font-family: inherit;
 
   /* Misc */
   user-select: none;
-  /* box-shadow: var(--box-shadow); */
 
   background-image: url('../imgs/btn-3d-effect.png');
   background-size: contain;
