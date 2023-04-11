@@ -46,8 +46,9 @@ window.addEventListener('keydown', routeInput);
 
 // Functions
 function routeInput(event) {
-  // To prevent enter from activating the focused button
+  // To prevent undesired default behavior of some keys
   if (event.key === 'Enter') event.preventDefault();
+  if (event.key === '/') event.preventDefault();
 
   // To pass that object when calling the other event handler functions
   const eventObj = {
@@ -100,6 +101,9 @@ function clearDisplay() {
   flagOverwrite = true;
   operandA = null;
   operandB = null;
+  operatorButtons.forEach(item => {
+    item.classList.remove('active');
+  });
 }
 
 function deleteLastCharacter() {
@@ -124,25 +128,20 @@ function negateNumber() {
 }
 
 function executeOperationAlgorithm(event) {
-  function pickOperation() {
-    operation = event.target.value;
-    operatorButtons.forEach(item => {
-      if (item.value === event.target.value) item.classList.add('active');
-      else item.classList.remove('active');
-    });
+  if (operandA === null) {
+    operandA = parseFloat(displayText.textContent);
+    pickOperation();
+    flagOverwrite = true;
+    return;
   }
 
   if (flagOverwrite === true && /\D/.test(event.target.value)) {
     pickOperation();
     return;
   }
+
   flagOverwrite = true;
 
-  if (operandA === null) {
-    operandA = parseFloat(displayText.textContent);
-    pickOperation();
-    return;
-  }
   operandB = parseFloat(displayText.textContent);
   operandA = operate(operation, operandA, operandB);
 
@@ -153,9 +152,12 @@ function executeOperationAlgorithm(event) {
 
   pickOperation();
 
-  if (operation === '=' || operation === 'Enter') {
-    operandA = null;
-    operandB = null;
+  function pickOperation() {
+    operation = event.target.value;
+    operatorButtons.forEach(item => {
+      if (item.value === event.target.value) item.classList.add('active');
+      else item.classList.remove('active');
+    });
   }
 }
 
