@@ -1,3 +1,5 @@
+/* GLOBAL */
+
 :root {
   --bg-color: linear-gradient(135deg, #45364b 0%, #7a4e89 100%);
 
@@ -22,64 +24,63 @@
   padding: 0;
 }
 
+/* LAYOUT */
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--bg-color);
-  color: var(--font-color-main);
+
   height: 100svh;
-  margin: 0;
+  background: var(--bg-color);
+
+  color: var(--font-color-main);
   font-family: monospace;
   font-size: 4rem;
 }
 
 .calc-container {
-  width: min(600px, 90%);
-  border-radius: 15px;
-  padding: 2.2rem;
-  background-color: var(--container-color);
-
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  place-items: stretch;
   gap: 15px;
 
-  place-items: stretch;
-
+  padding: 2.2rem;
+  width: min(600px, 90%);
+  border-radius: 15px;
+  background-color: var(--container-color);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .display {
   grid-column: span 4;
+
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   flex-wrap: wrap;
-  background-color: var(--display-color);
+
   width: 100%;
   padding: 0.5rem;
-  margin: 0;
   margin-bottom: 1.5vmin;
+  background-color: var(--display-color);
   border: none;
   border-radius: 10px;
-
-  /* box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); */
 }
 
 .number-pad {
   grid-column: span 3;
   grid-row: span 5;
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
 }
 
-button {
-  /* Reset */
-  margin: 0;
-  border: none;
+/* COMPONENTS */
 
+button {
   /* Display */
   display: flex;
   align-items: center;
@@ -87,7 +88,13 @@ button {
 
   /* Box Model Stuff */
   padding: 0.2em;
+  border: none;
   border-radius: 10px;
+
+  background-image: url('../imgs/btn-3d-effect.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
 
   /* Typography */
   font-size: inherit;
@@ -96,11 +103,6 @@ button {
 
   /* Misc */
   user-select: none;
-
-  background-image: url('../imgs/btn-3d-effect.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
 }
 
 @media (hover: hover) {
@@ -131,12 +133,14 @@ button > * {
 
 .clear {
   grid-column: span 2;
+
   background-color: var(--clear-btn-bg-color);
   color: var(--font-color-inverted);
 }
 
 .del {
   grid-column: span 1;
+
   background-color: var(--del-btn-bg-color);
   color: var(--font-color-inverted);
 }
